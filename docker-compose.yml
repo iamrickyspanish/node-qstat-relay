@@ -1,0 +1,10 @@
+version: "3.3"
+services:
+  relay:
+    build: .
+    container_name: node-qstat-relay
+    volumes:
+      - ".:/app"
+    ports:
+      - "6000:3000"
+      - "27000-28000:27000-28000"
