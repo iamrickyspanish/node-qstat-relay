@@ -10,7 +10,6 @@ const runCmd = async (serverType, host) => {
         reject(err);
         return;
       }
-      console.log(stdout, stderr);
       resolve(stdout);
     });
   });
@@ -20,9 +19,7 @@ module.exports = cors(async (req, res) => {
   try {
     if (req.method === "GET") {
       const { game, host } = await json(req);
-
-      if (!game || !host) throw "nigger";
-      response = await runCmd(game, host);
+      const response = await runCmd(game, host);
       return send(res, 200, `${response}`);
     }
     throw createError(400, "invalid format");
